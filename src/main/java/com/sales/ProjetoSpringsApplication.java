@@ -87,8 +87,8 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	 
 	clienteRepository.saveAll(Arrays.asList(cli1));
 	
-	enderecoRepository.saveAll(Arrays.asList(end));
-	//enderecoRepository.save(end);
+//	enderecoRepository.saveAll(Arrays.asList(end));
+	enderecoRepository.save(end);
 	
 
 	
