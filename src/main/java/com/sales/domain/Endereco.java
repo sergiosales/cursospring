@@ -1,6 +1,8 @@
 package com.sales.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +37,9 @@ public class Endereco implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
+	
+//	@OneToMany(mappedBy = "enderecoDeEntrega")
+//	private List<Pedido> pedidos = new ArrayList<Pedido>();
 
 	public Endereco() {
 		
@@ -128,6 +133,18 @@ public class Endereco implements Serializable {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
+
+
+
+/*	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}*/
 
 
 

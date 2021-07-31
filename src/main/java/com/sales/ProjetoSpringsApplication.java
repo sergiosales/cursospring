@@ -1,5 +1,6 @@
 package com.sales;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,20 @@ import com.sales.domain.Cidade;
 import com.sales.domain.Cliente;
 import com.sales.domain.Endereco;
 import com.sales.domain.Estado;
+import com.sales.domain.Pagamento;
+import com.sales.domain.PagamentoComBoleto;
+import com.sales.domain.PagamentoComCartao;
+import com.sales.domain.Pedido;
 import com.sales.domain.Produto;
+import com.sales.domain.enuns.EstadoPagamento;
 import com.sales.domain.enuns.TipoCliente;
 import com.sales.repository.CategoriaRepository;
 import com.sales.repository.CidadeRepository;
 import com.sales.repository.ClienteRepository;
 import com.sales.repository.EnderecoRepository;
 import com.sales.repository.EstadoRepository;
+import com.sales.repository.PagamentoRepository;
+import com.sales.repository.PedidoRepository;
 import com.sales.repository.ProdutoRepository;
 
 @SpringBootApplication
@@ -42,6 +50,12 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoSpringsApplication.class, args);
 	}
@@ -82,15 +96,34 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	
 	Cliente cli1 = new Cliente(null,"Paulo Sergio Sales", "paulounopar@hotmail.com", "02735894908", TipoCliente.PessoaFisica.getCod());
 	cli1.getTelefones().addAll(Arrays.asList("33294068","998115250"));
+	
 	Endereco end = new Endereco(null, "Av Clarice de Lima Castro ", "355", "bl11 apt23", "Nova Olinda", "86073310", cli1, cid1);
-	cli1.getEnderecos().addAll(Arrays.asList(end)); 
+	Endereco end2 = new Endereco(null, "Av Luzia de Lima Castro ", "500", "casa dos fundos", "Nova Esperança", "86070010", cli1, cid1);
+
+	cli1.getEnderecos().addAll(Arrays.asList(end,end2)); 
 	 
 	clienteRepository.saveAll(Arrays.asList(cli1));
-	
+	enderecoRepository.saveAll(Arrays.asList(end,end2));
 //	enderecoRepository.saveAll(Arrays.asList(end));
-	enderecoRepository.save(end);
 	
+	
+	SimpleDateFormat stf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	
+	Pedido ped1 = new Pedido(null, stf.parse("29/07/21 20:18"), cli1, end);
+	Pedido ped2 = new Pedido(null, stf.parse("28/07/21 20:18"), cli1, end2);
+	
+	Pagamento pagt1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1,6);
+	ped1.setPagamento(pagt1);
 
+	
+	Pagamento pagt2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, stf.parse("29/07/21 20:18"), null);
+	ped2.setPagamento(pagt2); 
+	
+	 
+	cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
+	
+	pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
+	pagamentoRepository.saveAll( Arrays.asList(pagt1,pagt2));
 	
 	 
 	}

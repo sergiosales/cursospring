@@ -3,9 +3,9 @@ package com.sales.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sales.domain.Cidade;
+import com.sales.domain.Pedido;
 
 @Repository
-public interface CidadeRepository extends JpaRepository<Cidade, Long> {
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
 }

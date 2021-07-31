@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.sales.domain.Cidade;
 import com.sales.repository.CidadeRepository;
 import com.sales.service.exception.ObjectNotFoundException;

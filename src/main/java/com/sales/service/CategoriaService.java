@@ -4,11 +4,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import com.sales.service.exception.*;
 
 import com.sales.domain.Categoria;
 import com.sales.repository.CategoriaRepository;
+import com.sales.service.exception.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
