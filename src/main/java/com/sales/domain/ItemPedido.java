@@ -1,7 +1,6 @@
 package com.sales.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
