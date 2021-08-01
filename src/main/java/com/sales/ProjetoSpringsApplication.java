@@ -13,6 +13,7 @@ import com.sales.domain.Cidade;
 import com.sales.domain.Cliente;
 import com.sales.domain.Endereco;
 import com.sales.domain.Estado;
+import com.sales.domain.ItemPedido;
 import com.sales.domain.Pagamento;
 import com.sales.domain.PagamentoComBoleto;
 import com.sales.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.sales.repository.CidadeRepository;
 import com.sales.repository.ClienteRepository;
 import com.sales.repository.EnderecoRepository;
 import com.sales.repository.EstadoRepository;
+import com.sales.repository.ItemPedidoRepository;
 import com.sales.repository.PagamentoRepository;
 import com.sales.repository.PedidoRepository;
 import com.sales.repository.ProdutoRepository;
@@ -55,6 +57,9 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoSpringsApplication.class, args);
@@ -94,6 +99,8 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	estadoRepository.saveAll(Arrays.asList(est1,est2));
 	cidadeRepository.saveAll(Arrays.asList(cid1,cid2,cid3));
 	
+	
+	
 	Cliente cli1 = new Cliente(null,"Paulo Sergio Sales", "paulounopar@hotmail.com", "02735894908", TipoCliente.PessoaFisica.getCod());
 	cli1.getTelefones().addAll(Arrays.asList("33294068","998115250"));
 	
@@ -125,6 +132,16 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 	pagamentoRepository.saveAll( Arrays.asList(pagt1,pagt2));
 	
+	ItemPedido ip1 = new ItemPedido(ped1, prod1, 0.00, 2.500, 1);
+	ItemPedido ip2 = new ItemPedido(ped1, prod3, 0.00, 800.00, 1);
+	
+	ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+	ped2.getItens().add(ip2);
+	
+	prod1.getItens().addAll(Arrays.asList(ip1));
+	prod3.getItens().add(ip2);
+	
+	itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2));
 	 
 	}
 
