@@ -29,4 +29,10 @@ public class CategoriaService {
 	return cate;
 	}
 
+
+	public Categoria insert(Categoria categoria) {
+		categoria.setCodigo(null);
+		return categorias.save(categoria);
+	}
+
 }
