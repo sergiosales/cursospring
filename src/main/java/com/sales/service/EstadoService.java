@@ -16,7 +16,7 @@ public class EstadoService {
 	private EstadoRepository estados;
 	
 
-	public Optional<Estado> buscar(Long codigo) {
+	public Optional<Estado> find(Long codigo) {
 		Optional<Estado> uf= estados.findById(codigo);
 		if(uf.isEmpty() || uf.get().getCodigo()== null) {
 		 throw new ObjectNotFoundException("Estado não Encontrado! codigo:" + codigo +  " Tipo:" +

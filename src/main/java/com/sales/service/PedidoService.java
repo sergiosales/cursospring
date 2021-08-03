@@ -16,7 +16,7 @@ public class PedidoService {
 	private PedidoRepository pedidos;
 	
 
-	public Optional<Pedido> buscar(Long codigo) {
+	public Optional<Pedido> find(Long codigo) {
 		Optional<Pedido> ped = pedidos.findById(codigo);
 		if(ped.isEmpty() || ped.get().getCodigo()== null) {
 		 throw new ObjectNotFoundException("Pedido não Encontrado! codigo:" + codigo +  " Tipo:" +

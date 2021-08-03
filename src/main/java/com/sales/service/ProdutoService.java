@@ -15,7 +15,7 @@ public class ProdutoService {
 	private ProdutoRepository produtos;
 	
 
-	public Optional<Produto> buscar(Long codigo) {
+	public Optional<Produto> find(Long codigo) {
 		Optional<Produto> prod = produtos.findById(codigo);
 		
 	return prod;

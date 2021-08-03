@@ -22,8 +22,8 @@ public class ClienteResource {
 	
 	//@GetMapping("/{codigo}")
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long codigo) {
-		Optional<Cliente> obj = service.buscar(codigo);
+	public ResponseEntity<Optional<Cliente>> find(@PathVariable Long codigo) {
+		Optional<Cliente> obj = service.find(codigo);
 		
 		return ResponseEntity.ok().body(obj);
 		

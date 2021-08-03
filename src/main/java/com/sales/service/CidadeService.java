@@ -16,7 +16,7 @@ public class CidadeService {
 	private CidadeRepository cidades;
 	
 
-	public Optional<Cidade> buscar(Long codigo) {
+	public Optional<Cidade> find(Long codigo) {
 		Optional<Cidade> cid = cidades.findById(codigo);
 		if(cid.isEmpty() || cid.get().getCodigo()== null) {
 		 throw new ObjectNotFoundException("Cidade não Encontrado! codigo:" + codigo +  " Tipo:" +

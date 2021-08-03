@@ -22,8 +22,8 @@ public class CidadeResource {
 	
 	//@GetMapping("/{codigo}")
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long codigo) {
-		Optional<Cidade> obj = service.buscar(codigo);
+	public ResponseEntity<Optional<Cidade>> find(@PathVariable Long codigo) {
+		Optional<Cidade> obj = service.find(codigo);
 		
 		return ResponseEntity.ok().body(obj);
 		

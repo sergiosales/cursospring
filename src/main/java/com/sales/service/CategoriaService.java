@@ -16,7 +16,7 @@ public class CategoriaService {
 	private CategoriaRepository categorias;
 	
 
-	public Optional<Categoria> buscar(Long codigo) {
+	public Optional<Categoria> find(Long codigo) {
 		Optional<Categoria> cate = categorias.findById(codigo);
 		if(cate.isEmpty() || cate.get().getCodigo()== null) {
 		 throw new ObjectNotFoundException("Categoria não Encontrado! codigo:" + codigo +  " Tipo:" +
@@ -32,6 +32,12 @@ public class CategoriaService {
 
 	public Categoria insert(Categoria categoria) {
 		categoria.setCodigo(null);
+		return categorias.save(categoria);
+	}
+
+
+	public Categoria update(Categoria categoria) {
+	  find(categoria.getCodigo());
 		return categorias.save(categoria);
 	}
 

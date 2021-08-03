@@ -22,8 +22,8 @@ public class EstadoResource {
 	
 	//@GetMapping("/{codigo}")
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long codigo) {
-		Optional<Categoria> obj = service.buscar(codigo);
+	public ResponseEntity<Optional<Categoria>> find(@PathVariable Long codigo) {
+		Optional<Categoria> obj = service.find(codigo);
 		
 		return ResponseEntity.ok().body(obj);
 		

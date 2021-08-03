@@ -22,8 +22,8 @@ public class PedidoResource {
 	
 	//@GetMapping("/{codigo}")
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Long codigo) {
-		Optional<Pedido> obj = service.buscar(codigo);
+	public ResponseEntity<Optional<Pedido>> find(@PathVariable Long codigo) {
+		Optional<Pedido> obj = service.find(codigo);
 		
 		return ResponseEntity.ok().body(obj);
 		

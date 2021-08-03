@@ -16,7 +16,7 @@ public class ClienteService {
 	private ClienteRepository clientes;
 	
 
-	public Optional<Cliente> buscar(Long codigo) {
+	public Optional<Cliente> find(Long codigo) {
 		Optional<Cliente> clie = clientes.findById(codigo);
 		if(clie.isEmpty() || clie.get().getCodigo()== null) {
 		 throw new ObjectNotFoundException("Cliente não Encontrado! codigo:" + codigo +  " Tipo:" +
