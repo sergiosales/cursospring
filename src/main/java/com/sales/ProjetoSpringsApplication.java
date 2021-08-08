@@ -69,6 +69,12 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 	 Categoria cat  = new Categoria(null, "Informatica");
 	 Categoria cat1  = new Categoria(null, "Escritorio");
+	 Categoria cat2  = new Categoria(null, "Roupa");
+	 Categoria cat3  = new Categoria(null, "Livros");
+	 Categoria cat4 = new Categoria(null, "Eletronicos");
+	 Categoria cat5  = new Categoria(null, "Mesas");
+	 Categoria cat6 = new Categoria(null, "Camas");
+	 Categoria cat7  = new Categoria(null, "Bolsas");
 	 
 	 Produto prod= new Produto(null, "impressora", 250.00);
 	 Produto prod1= new Produto(null, "Computador", 2500.00);
@@ -87,7 +93,7 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	 Estado est1= new Estado(null, "Minas Gerais");
 	 Estado est2= new Estado(null, "São Paulo");
 	 
-	 categoriaRepository.saveAll(Arrays.asList(cat,cat1));
+	 categoriaRepository.saveAll(Arrays.asList(cat,cat1,cat2,cat3,cat4,cat5,cat6,cat7));
 	 produtoRepository.saveAll(Arrays.asList(prod,prod1,prod2,prod3));
 	 
 	 
