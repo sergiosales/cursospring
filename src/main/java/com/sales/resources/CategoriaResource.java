@@ -32,8 +32,8 @@ public class CategoriaResource {
 	
 	//@GetMapping("/{codigo}")
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
-	public ResponseEntity<Optional<Categoria>> find(@PathVariable Long codigo) {
-		Optional<Categoria> obj = service.find(codigo);
+	public ResponseEntity<Categoria> find(@PathVariable Long codigo) {
+		Categoria obj = service.find(codigo);
 		
 		return ResponseEntity.ok().body(obj);		
 		

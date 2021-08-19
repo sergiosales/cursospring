@@ -23,17 +23,11 @@ public class CategoriaService {
 	private CategoriaRepository categorias;
 	
 
-	public Optional<Categoria> find(Long codigo) {
-		Optional<Categoria> cate = categorias.findById(codigo);
-		if(cate.isEmpty() || cate.get().getCodigo()== null) {
-		 throw new ObjectNotFoundException("Categoria não Encontrado! codigo:" + codigo +  " Tipo:" +
-		Categoria.class.getName());
-				
-			
-			
-		}
+	public Categoria find(Long codigo) {
+		Optional<Categoria> cate = categorias.findById(codigo);		
 		
-	return cate;
+	return cate.orElseThrow(() ->  new  ObjectNotFoundException("Categoria não Encontrado! codigo:" + codigo +  " Tipo:" +
+			Categoria.class.getName()));
 	}
 
 
@@ -42,12 +36,12 @@ public class CategoriaService {
 		return categorias.save(categoria);
 	}
 
+	public Categoria update(Categoria obj) {
+		Categoria newObj = find(obj.getCodigo());
 
-	public Categoria update(Categoria categoria) {
-	  find(categoria.getCodigo());
-		return categorias.save(categoria);
+		updateDados(newObj, obj);
+		return categorias.save(newObj);
 	}
-
 
 	public void delete(Long codigo) {
 		find(codigo);
@@ -78,6 +72,12 @@ public class CategoriaService {
 		
 		return new Categoria(objDTO.getCodigo(), objDTO.getNome());
 		
+	}
+	
+	private void updateDados(Categoria newCategoria, Categoria categoria) {
+		newCategoria.setNome(categoria.getNome());
+		
+
 	}
 
 }
