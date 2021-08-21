@@ -3,7 +3,6 @@ package com.sales.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -21,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sales.domain.Cliente;
 import com.sales.domain.dto.ClienteDTO;
+import com.sales.domain.dto.ClienteNewDTO;
 import com.sales.repository.ClienteRepository;
 import com.sales.service.ClienteService;
 
@@ -31,8 +31,8 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService service;	
 	
-	@Autowired
-	private ClienteRepository rep;
+/*	@Autowired
+	private ClienteRepository rep;*/
 	
 	//@GetMapping("/{codigo}")
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
@@ -44,28 +44,19 @@ public class ClienteResource {
 		
 	}
 	
+
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert( @Valid @RequestBody ClienteDTO clienteDto){
-		Cliente categoria = service.fromDTO(clienteDto);
-		categoria = service.insert(categoria);
+	public ResponseEntity<Void> insert( @Valid @RequestBody ClienteNewDTO clienteDto){
+		Cliente cliente = service.fromDTO(clienteDto);
+		cliente = service.insert(cliente);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest().path("/{codigo}")
-				.buildAndExpand(categoria.getCodigo()).toUri();
+				.buildAndExpand(cliente.getCodigo()).toUri();
 		
 		return ResponseEntity.created(uri).build(); 
 	}
 	
-	/*@RequestMapping(value = "/{codigo}",method = RequestMethod.PUT)
-//	@ResponseStatus(HttpStatus.NO_CONTENT)
-//	@PutMapping("/{codigo}")
-	public ResponseEntity<Cliente> update(@PathVariable Long codigo,@Valid @RequestBody Cliente cliente){
 	
-	 Cliente clienteSalvo = service.update(cliente, codigo);
-	 
-	
-		
-		return ResponseEntity.ok(clienteSalvo);
-	}*/
 	
 	@RequestMapping(value = "/{codigo}",method = RequestMethod.PUT)
 	public ResponseEntity<Cliente> update(@Valid @RequestBody ClienteDTO clienteDto,@PathVariable Long codigo){
@@ -108,5 +99,7 @@ public class ClienteResource {
 		
 	}
 	
+
+
 
 }

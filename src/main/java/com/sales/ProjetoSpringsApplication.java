@@ -107,7 +107,7 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	
 	
 	
-	Cliente cli1 = new Cliente(null,"Paulo Sergio Sales", "paulounopar@hotmail.com", "02735894908", TipoCliente.PessoaFisica.getCod());
+	Cliente cli1 = new Cliente(null,"Paulo Sergio Sales", "paulounopar@hotmail.com", "02735894908", TipoCliente.PessoaFisica);
 	cli1.getTelefones().addAll(Arrays.asList("33294068","998115250"));
 	
 	Endereco end = new Endereco(null, "Av Clarice de Lima Castro ", "355", "bl11 apt23", "Nova Olinda", "86073310", cli1, cid1);
