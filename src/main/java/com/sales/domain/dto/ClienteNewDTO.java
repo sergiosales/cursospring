@@ -2,6 +2,14 @@ package com.sales.domain.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.sales.service.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable  {
 	
 	
@@ -9,17 +17,33 @@ public class ClienteNewDTO implements Serializable  {
 	
 	
 	private Long codigo;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 5,max = 120, message = "O nome deve ter entre 5 a 120 caracteres")
 	private String Nome;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Email(message = "Email inválido")
 	private String email;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
+
 	private String cpfOuCnpj;	
 	private Integer tipo;
 	
-	private String logradouro;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	private String logradouro;	
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String numero;
 	private String complemento;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String bairro;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cep;
 	
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String Telefone1;
 	private String Telefone2;
 	private String Telefone3;
