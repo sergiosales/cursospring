@@ -161,7 +161,7 @@ public class ProjetoSpringsApplication implements CommandLineRunner {
 	pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 	pagamentoRepository.saveAll( Arrays.asList(pagt1,pagt2));
 	
-	ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 2.500, 1);
+	ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 2000.00, 1);
 	ItemPedido ip2 = new ItemPedido(ped1, p10, 0.00, 800.00, 1);
 	
 	ped1.getItens().addAll(Arrays.asList(ip1,ip2));
