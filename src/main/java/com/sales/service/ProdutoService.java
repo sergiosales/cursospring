@@ -13,6 +13,7 @@ import com.sales.domain.Categoria;
 import com.sales.domain.Produto;
 import com.sales.repository.CategoriaRepository;
 import com.sales.repository.ProdutoRepository;
+import com.sales.service.exception.ObjectNotFoundException;
 
 @Service
 public class ProdutoService {
@@ -24,11 +25,19 @@ public class ProdutoService {
 	private CategoriaRepository categoriaRepository;
 	
 
-	public Optional<Produto> find(Long codigo) {
+/*	public Optional<Produto> find(Long codigo) {
 		Optional<Produto> prod = produtos.findById(codigo);
 		
 	return prod;
+	}*/
+	
+
+	public Produto find(Long codigo) {
+		Optional<Produto> obj = produtos.findById(codigo);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Produto não encontrado! Id: " + codigo + ", Tipo: " + Produto.class.getName()));
 	}
+
 	
 	public Page<Produto> search(String nome, List<Long> codigo,Integer page,Integer linesPerPage,String orderBy,String direction){
 		

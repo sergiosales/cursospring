@@ -2,7 +2,6 @@ package com.sales.resources;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sales.domain.Produto;
-import com.sales.domain.dto.CategoriaDTO;
 import com.sales.domain.dto.ProdutoDTO;
 import com.sales.resources.utils.URL;
 import com.sales.service.ProdutoService;
@@ -28,8 +26,8 @@ public class ProdutoResource {
 	
 	//@GetMapping("/{codigo}")
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
-	public ResponseEntity<Optional<Produto>> find(@PathVariable Long codigo) {
-		Optional<Produto> prod = service.find(codigo);
+	public ResponseEntity<Produto> find(@PathVariable Long codigo) {
+		Produto prod = service.find(codigo);
 		
 		return ResponseEntity.ok().body(prod);
 		
