@@ -34,7 +34,7 @@ public class ClienteResource {
 /*	@Autowired
 	private ClienteRepository rep;*/
 	
-	//@GetMapping("/{codigo}")
+	// metodo para recupar um cliente pelo id
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Long codigo) {
 		Cliente obj = service.find(codigo);
@@ -44,7 +44,7 @@ public class ClienteResource {
 		
 	}
 	
-
+	// metodo para  inserir um cliente
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert( @Valid @RequestBody ClienteNewDTO clienteDto){
 		Cliente cliente = service.fromDTO(clienteDto);
@@ -57,7 +57,7 @@ public class ClienteResource {
 	}
 	
 	
-	
+	// metodo para atualizar um cliente
 	@RequestMapping(value = "/{codigo}",method = RequestMethod.PUT)
 	public ResponseEntity<Cliente> update(@Valid @RequestBody ClienteDTO clienteDto,@PathVariable Long codigo){
 		Cliente obj = service.fromDTO(clienteDto);
@@ -68,7 +68,7 @@ public class ClienteResource {
 	}
 	
 	
-	
+	// metodo para deletar um cliente
 	@RequestMapping(value ="/{codigo}",method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Long codigo) {
 		service.delete(codigo);
