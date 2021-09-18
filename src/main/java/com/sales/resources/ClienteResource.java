@@ -21,7 +21,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.sales.domain.Cliente;
 import com.sales.domain.dto.ClienteDTO;
 import com.sales.domain.dto.ClienteNewDTO;
-import com.sales.repository.ClienteRepository;
 import com.sales.service.ClienteService;
 
 @RestController

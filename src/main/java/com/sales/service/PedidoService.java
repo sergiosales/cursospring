@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sales.domain.ItemPedido;
 import com.sales.domain.PagamentoComBoleto;
@@ -50,7 +51,7 @@ public class PedidoService {
 				"Objeto não encontrado! Id: " + codigo + ", Tipo: " + Pedido.class.getName()));
 	}
 
-
+	@Transactional
 	public  Pedido insert( Pedido obj) {
 	obj.setCodigo(null);
 	obj.setInstante(new Date());
@@ -77,6 +78,7 @@ public class PedidoService {
 		
 		itemPedidoRepository.saveAll(obj.getItens()); 
 		emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
 	
 	}

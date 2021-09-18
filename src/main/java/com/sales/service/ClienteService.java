@@ -17,7 +17,6 @@ import com.sales.domain.Endereco;
 import com.sales.domain.dto.ClienteDTO;
 import com.sales.domain.dto.ClienteNewDTO;
 import com.sales.domain.enuns.TipoCliente;
-import com.sales.repository.CidadeRepository;
 import com.sales.repository.ClienteRepository;
 import com.sales.repository.EnderecoRepository;
 import com.sales.service.exception.DataIntegrityException;
