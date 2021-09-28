@@ -134,10 +134,11 @@ public class DBService {
 		
 		
 		
-		Cliente cli1 = new Cliente(null,"Paulo Sergio Sales", "paulounopar@hotmail.com", "02735894908", TipoCliente.PessoaFisica,pwd.encode("salgado "));
+		Cliente cli1 = new Cliente(null,"Paulo Sergio Sales", "paulounopar@hotmail.com", "02735894908", TipoCliente.PessoaFisica,pwd.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("33294068","998115250"));
 		
-		Cliente cli2 = new Cliente(null,"Carla", "carla@hotmail.com", "02735894908", TipoCliente.PessoaFisica,pwd.encode("salgado "));
+		Cliente cli2 = new Cliente(null,"Carla", "carla@hotmail.com", "43445510016", TipoCliente.PessoaFisica,pwd.encode("salgado"));
+	//	System.out.println(pwd.encode("123"));
 		cli2.getTelefones().addAll(Arrays.asList("3326-55-68","998115252"));
 		cli2.addPerfil(Perfil.Admin);
 		
