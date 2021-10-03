@@ -17,9 +17,12 @@ import com.sales.domain.Cliente;
 import com.sales.domain.Endereco;
 import com.sales.domain.dto.ClienteDTO;
 import com.sales.domain.dto.ClienteNewDTO;
+import com.sales.domain.enuns.Perfil;
 import com.sales.domain.enuns.TipoCliente;
 import com.sales.repository.ClienteRepository;
 import com.sales.repository.EnderecoRepository;
+import com.sales.security.UserSS;
+import com.sales.service.exception.AuthorizationException;
 import com.sales.service.exception.DataIntegrityException;
 import com.sales.service.exception.ObjectNotFoundException;
 
@@ -36,6 +39,17 @@ public class ClienteService {
 	private BCryptPasswordEncoder pwd;
 
 	public Cliente find(Long codigo) {
+		
+	UserSS user = UserService.authenticated();
+	if(user == null ||!user.hasRole(Perfil.Admin) && !codigo.equals(user.getCodigo())) {
+		throw new AuthorizationException("Acesso Negado");
+		
+		
+	}
+		
+		
+		
+		
 		Optional<Cliente> clie = clientes.findById(codigo);
 
 		return clie.orElseThrow(() -> new ObjectNotFoundException(
