@@ -4,9 +4,13 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sales.domain.Cliente;
 import com.sales.domain.ItemPedido;
 import com.sales.domain.PagamentoComBoleto;
 import com.sales.domain.Pedido;
@@ -14,6 +18,8 @@ import com.sales.domain.enuns.EstadoPagamento;
 import com.sales.repository.ItemPedidoRepository;
 import com.sales.repository.PagamentoRepository;
 import com.sales.repository.PedidoRepository;
+import com.sales.security.UserSS;
+import com.sales.service.exception.AuthorizationException;
 import com.sales.service.exception.ObjectNotFoundException;
 
 @Service
@@ -81,6 +87,19 @@ public class PedidoService {
 		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
 	
+	}
+	
+	public Page<Pedido> findPage(Integer page,Integer linesPerPage,String orderBy,String direction){
+		UserSS user  = UserService.authenticated();
+		if(user== null){
+			
+			throw new AuthorizationException("Acesso Negado!");
+		}
+		
+		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
+		Cliente cliente  = clienteService.find(user.getCodigo());
+		
+		return rep.findByCliente(cliente, pageRequest);
 	}
 
 }
